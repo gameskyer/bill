@@ -58,10 +58,9 @@ const columns = [
 	},
 ];
 let param = new URLSearchParams();
-// param.append('type', this.$route.params.type);
-param.append('type', '房租');
+param.append('type', this.$route.params.type);
+
 const queryData = (param) => {
-	console.log(param);
 	return SelectBillByType(param);
 };
 
