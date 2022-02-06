@@ -1,107 +1,82 @@
 <template>
-	<a-table
-		:columns="columns"
-		:row-key="(record) => record.login.uuid"
-		:data-source="dataSource"
-		:pagination="pagination"
-		:loading="loading"
-		@change="handleTableChange"
-	>
-		<template #bodyCell="{ column, text }">
-			<template v-if="column.dataIndex === 'name'"
-				>{{ text.first }} {{ text.last }}</template
-			>
-		</template>
-	</a-table>
+  <a-table :columns="columns" :row-key="record => record.login.uuid" :data-source="dataSource" :pagination="pagination"
+    :loading="loading" @change="handleTableChange">
+    <template #bodyCell="{ column, text }">
+      <template v-if="column.dataIndex === 'name'">{{ text.first }} {{ text.last }}</template>
+    </template>
+  </a-table>
 </template>
-<!-- <script>
-import { SelectBillByType } from '../api/api.js';
-export default {
-	created() {
-		let param = new URLSearchParams();
-		param.append('type', this.$route.params.type);
-		SelectBillByType(param).then((res) => {
-			console.log(res.data);
-		});
-	},
-};
-</script> -->
 <script>
 import { usePagination } from 'vue-request';
 import { computed, defineComponent } from 'vue';
-import { SelectBillByType } from '../api/api.js';
-const columns = [
-	{
-		title: 'Name',
-		dataIndex: 'name',
-		sorter: true,
-		width: '20%',
-	},
-	{
-		title: 'Gender',
-		dataIndex: 'gender',
-		filters: [
-			{
-				text: 'Male',
-				value: 'male',
-			},
-			{
-				text: 'Female',
-				value: 'female',
-			},
-		],
-		width: '20%',
-	},
-	{
-		title: 'Email',
-		dataIndex: 'email',
-	},
-];
-let param = new URLSearchParams();
-param.append('type', this.$route.params.type);
+import axios from 'axios';
+const columns = [{
+  title: 'Name',
+  dataIndex: 'name',
+  sorter: true,
+  width: '20%',
+}, {
+  title: 'Gender',
+  dataIndex: 'gender',
+  filters: [{
+    text: 'Male',
+    value: 'male',
+  }, {
+    text: 'Female',
+    value: 'female',
+  }],
+  width: '20%',
+}, {
+  title: 'Email',
+  dataIndex: 'email',
+}];
 
-const queryData = (param) => {
-	return SelectBillByType(param);
+const queryData = params => {
+  return axios.get('https://randomuser.me/api?noinfo', {
+    params,
+  });
 };
 
 export default defineComponent({
-	setup() {
-		const {
-			data: dataSource,
-			run,
-			loading,
-			current,
-			pageSize,
-		} = usePagination(queryData, {
-			formatResult: (res) => res.data,
-			pagination: {
-				currentKey: 'page',
-				pageSizeKey: 'data',
-			},
-		});
-		const pagination = computed(() => ({
-			total: 200,
-			current: current.value,
-			pageSize: pageSize.value,
-		}));
+  setup () {
+    const {
+      data: dataSource,
+      run,
+      loading,
+      current,
+      pageSize,
+    } = usePagination(queryData, {
+      formatResult: res => res.data.results,
+      pagination: {
+        currentKey: 'page',
+        pageSizeKey: 'results',
+      },
+    });
 
-		const handleTableChange = (pag, filters, sorter) => {
-			run({
-				results: pag.pageSize,
-				page: pag?.current,
-				sortField: sorter.field,
-				sortOrder: sorter.order,
-				...filters,
-			});
-		};
+    const pagination = computed(() => ({
+      total: 200,
+      current: current.value,
+      pageSize: pageSize.value,
+    }));
 
-		return {
-			dataSource,
-			pagination,
-			loading,
-			columns,
-			handleTableChange,
-		};
-	},
+    const handleTableChange = (pag, filters, sorter) => {
+      run({
+        results: pag.pageSize,
+        page: pag?.current,
+        sortField: sorter.field,
+        sortOrder: sorter.order,
+        ...filters,
+      });
+    };
+
+    return {
+      dataSource,
+      pagination,
+      loading,
+      columns,
+      handleTableChange,
+    };
+  },
+
 });
 </script>
