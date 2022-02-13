@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function SelectBillByType(params) {
+export function SelectBill(params) {
 	return axios({
 		method: 'post',
-		url: '/SelectBillByType',
+		url: '/SelectBill',
 		data: params,
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 	});

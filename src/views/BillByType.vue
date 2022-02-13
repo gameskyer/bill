@@ -1,10 +1,31 @@
 <template>
+	<a-button type="primary" @click="showModal" style="margin-bottom: 30px;"
+		><template #icon> <PlusSquareOutlined /></template>新增账单</a-button
+	>
+	<a-button
+		type="primary"
+		@click="showModal2"
+		style="margin-bottom: 30px;background-color: rgb(68, 173, 36);color: rgb(255, 255, 255);border: rgb(68, 173, 36);"
+		><template #icon><ArrowUpOutlined /></template>上传账单</a-button
+	>
+
+	<a-modal
+		v-model:visible="visible"
+		title="新增账单"
+		:confirm-loading="confirmLoading"
+		ok-text="提交"
+		cancel-text="取消"
+		@ok="handleOk"
+	>
+		<p>{{ modalText }}</p>
+	</a-modal>
 	<a-table
 		:columns="columns"
 		:data-source="dataSource"
 		:pagination="pagination"
 		:loading="loading"
 		@change="handleTableChange"
+		bordered
 	>
 		<template #bodyCell="{ column, text }">
 			<template v-if="column.dataIndex === 'name'"
@@ -13,11 +34,17 @@
 		</template>
 	</a-table>
 </template>
-
+<style>
+.ant-btn {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+</style>
 <script>
 import { usePagination } from 'vue-request';
-import { computed, defineComponent } from 'vue';
-import { SelectBillByType, GetBillTypeList } from '../api/api.js';
+import { ref, computed, defineComponent } from 'vue';
+import { SelectBill, GetBillTypeList } from '../api/api.js';
+import { ArrowUpOutlined, PlusSquareOutlined } from '@ant-design/icons-vue';
 const arr = new Array();
 //获取已有的类别
 GetBillTypeList().then((res) => {
@@ -55,51 +82,33 @@ const columns = [
 ];
 
 const queryData = (param) => {
-	return SelectBillByType(param);
+	return SelectBill(param);
 };
 
 export default defineComponent({
-	// setup() {
-	// 	const { data:dataSource, run, loading, current, total, pageSize } = usePagination(
-	// 		queryData,
-	// 		{
-	// formatResult: (res) => res.data.bill,
-	// 			pagination: {
-	// 				currentKey: 'page',
-	// 				pageSizeKey: 'results',
-	// 				totalKey: 'data.total',
-	// 			},
-	// 		}
-	// 	);
-
-	// 	/*computed用来监控自己定义的变量，该变量不在data里面声明，直接在computed里面定义，
-	//   然后就可以在页面上进行双向数据绑定展示出结果或者用作其他处理；*/
-	// 	const pagination = computed(() => ({
-	// 		total: 2999,
-	// 		// total: total.value,
-	// 		current: current.value,
-	// 		pageSize: pageSize.value,
-	// 	}));
-	// 	//这个应该是条件改变时执行的方法
-	// 	const handleTableChange = (pag, filters, sorter) => {
-	// 		run({
-	// 			results: pag.pageSize,
-	// 			page: pag?.current,
-	// 			sortField: sorter.field,
-	// 			sortOrder: sorter.order,
-	// 			...filters,
-	// 		});
-	// 	};
-	// 	return {
-	// 		dataSource,
-	// 		pagination,
-	// 		total,
-	// 		loading,
-	// 		columns,
-	// 		handleTableChange,
-	// 	};
-	// },
+	components: {
+		ArrowUpOutlined,
+		PlusSquareOutlined,
+	},
 	setup() {
+		//对话框
+		const modalText = ref('Content of the modal');
+		const visible = ref(false);
+		const confirmLoading = ref(false);
+
+		const showModal = () => {
+			visible.value = true;
+		};
+
+		const handleOk = () => {
+			modalText.value = 'The modal will be closed after two seconds';
+			confirmLoading.value = true;
+			setTimeout(() => {
+				visible.value = false;
+				confirmLoading.value = false;
+			}, 2000);
+		};
+		//表格部分
 		const {
 			data,
 			current,
@@ -139,6 +148,11 @@ export default defineComponent({
 			columns,
 			pagination,
 			handleTableChange,
+			modalText,
+			visible,
+			confirmLoading,
+			showModal,
+			handleOk,
 		};
 	},
 	created() {
