@@ -102,53 +102,52 @@ GetBillTypeList().then((res) => {
 	});
 });
 //表格部分
-const columns = [
-	{
-		title: '名称',
-		dataIndex: 'billName',
-		width: '20%',
-		customFilterDropdown: true,
-		onFilter: (value, record) =>
-			record.billName
-				.toString()
-				.toLowerCase()
-				.includes(value.toLowerCase()),
-		onFilterDropdownVisibleChange: (visible) => {
-			if (visible) {
-				setTimeout(() => {
-					searchInput.value.focus();
-				}, 100);
-			}
+const filteredInfo = ref();
+const columns = computed(() => {
+	const filtered = filteredInfo.value || {};
+	return [
+		{
+			title: '名称',
+			dataIndex: 'billName',
+			width: '20%',
+			customFilterDropdown: true,
+			onFilter: (value, record) =>
+				record.billName
+					.toString()
+					.toLowerCase()
+					.includes(value.toLowerCase()),
+			onFilterDropdownVisibleChange: (visible) => {
+				if (visible) {
+					setTimeout(() => {
+						searchInput.value.focus();
+					}, 100);
+				}
+			},
 		},
-	},
-	{
-		title: '金额',
-		dataIndex: 'billPrice',
-		width: '30%',
-	},
-	{
-		title: '消费日期',
-		dataIndex: 'billDate',
-		sorter: true,
-		width: '30%',
-	},
-	{
-		title: '类别',
-		dataIndex: 'billType',
-		filters: arr,
-		width: '20%',
-	},
-];
-const handleSearch = (selectedKeys, confirm, dataIndex) => {
-	confirm();
-	state.searchText = selectedKeys[0];
-	state.searchedColumn = dataIndex;
-};
+		{
+			title: '金额',
+			dataIndex: 'billPrice',
+			width: '30%',
+		},
+		{
+			title: '消费日期',
+			dataIndex: 'billDate',
+			sorter: true,
+			width: '30%',
+		},
+		{
+			title: '类别',
+			dataIndex: 'billType',
+			key: 'billType',
+			filters: arr,
+			width: '20%',
+			filteredValue: filtered.name || null,
+			onFilter: (value, record) => record.billType.includes(value),
+			ellipsis: true,
+		},
+	];
+});
 
-const handleReset = (clearFilters) => {
-	clearFilters();
-	state.searchText = '';
-};
 //查询数据
 const queryData = (param) => {
 	return SelectBill(param);
@@ -160,6 +159,16 @@ export default defineComponent({
 		SearchOutlined,
 	},
 	setup() {
+		const handleSearch = (selectedKeys, confirm, dataIndex) => {
+			confirm();
+			state.searchText = selectedKeys[0];
+			state.searchedColumn = dataIndex;
+		};
+
+		const handleReset = (clearFilters) => {
+			clearFilters();
+			state.searchText = '';
+		};
 		const {
 			data,
 			current,

@@ -135,20 +135,15 @@ const columns = [
 	{
 		title: '类别',
 		dataIndex: 'billType',
+		key: 'billType',
 		filters: arr,
 		width: '20%',
+		filteredValue: filtered.name || null,
+		onFilter: (value, record) => record.billType.includes(value),
+		ellipsis: true,
 	},
 ];
-const handleSearch = (selectedKeys, confirm, dataIndex) => {
-	confirm();
-	state.searchText = selectedKeys[0];
-	state.searchedColumn = dataIndex;
-};
 
-const handleReset = (clearFilters) => {
-	clearFilters();
-	state.searchText = '';
-};
 //查询数据
 const queryData = (param) => {
 	return SelectBill(param);
@@ -160,6 +155,16 @@ export default defineComponent({
 		SearchOutlined,
 	},
 	setup() {
+		const handleSearch = (selectedKeys, confirm, dataIndex) => {
+			confirm();
+			state.searchText = selectedKeys[0];
+			state.searchedColumn = dataIndex;
+		};
+
+		const handleReset = (clearFilters) => {
+			clearFilters();
+			state.searchText = '';
+		};
 		const {
 			data,
 			current,

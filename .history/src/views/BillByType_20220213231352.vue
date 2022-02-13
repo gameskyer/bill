@@ -139,16 +139,7 @@ const columns = [
 		width: '20%',
 	},
 ];
-const handleSearch = (selectedKeys, confirm, dataIndex) => {
-	confirm();
-	state.searchText = selectedKeys[0];
-	state.searchedColumn = dataIndex;
-};
 
-const handleReset = (clearFilters) => {
-	clearFilters();
-	state.searchText = '';
-};
 //查询数据
 const queryData = (param) => {
 	return SelectBill(param);
@@ -160,6 +151,16 @@ export default defineComponent({
 		SearchOutlined,
 	},
 	setup() {
+		const handleSearch = (selectedKeys, confirm, dataIndex) => {
+			confirm();
+			state.searchText = selectedKeys[0];
+			state.searchedColumn = dataIndex;
+		};
+
+		const handleReset = (clearFilters) => {
+			clearFilters();
+			state.searchText = '';
+		};
 		const {
 			data,
 			current,
