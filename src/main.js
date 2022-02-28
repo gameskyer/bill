@@ -6,6 +6,6 @@ import router from './router';
 import axios from 'axios';
 const app = createApp(App).use(router);
 app.config.productionTip = false;
-axios.defaults.baseURL = 'http://127.0.0.1:8001/';
+axios.defaults.baseURL = 'http://127.0.0.1:8004/';
 app.use(Antd);
 app.mount('#app');
