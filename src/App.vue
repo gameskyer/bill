@@ -3,45 +3,43 @@
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
       <div class="logo" />
       <a-menu theme="dark" v-model:selectedKeys="selectedKeys" mode="inline">
-        
-          <a-menu-item key="1">
-            <router-link to="/bill">
+        <a-menu-item key="1">
+          <router-link to="/bill">
             <pie-chart-outlined />
             <span>账单分类</span>
-            </router-link>
-          </a-menu-item>
-        
-       
-        <a-menu-item key="2">
-          <router-link to="/bill">
-          <desktop-outlined />
-          <span>每月账单</span>
           </router-link>
         </a-menu-item>
-       
+        <a-menu-item key="2">
+          <router-link to="/bill">
+            <desktop-outlined />
+            <span>每月账单</span>
+          </router-link>
+        </a-menu-item>
+
         <a-sub-menu key="sub1">
           <template #title>
-            <span> 
+            <span>
               <user-outlined />
               <span>User</span>
             </span>
           </template>
-          <a-menu-item key="3"><router-link to="/">Home</router-link></a-menu-item>
-          <a-menu-item key="4"><router-link to="/about">About</router-link></a-menu-item>
+          <a-menu-item key="3">
+            <router-link to="/">Home</router-link>
+          </a-menu-item>
           <a-menu-item key="5">Bill</a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <!-- 二级菜单 -->
-            <a-sub-menu key="sub3">
-              <template #title>
-                <span>
-                  <DingdingOutlined />
-                  <span>Team</span>
-                </span>
-              </template>
-              <a-menu-item key="6">Team 1</a-menu-item>
-              <a-menu-item key="7">Team 2</a-menu-item>
-            </a-sub-menu>
+          <a-sub-menu key="sub3">
+            <template #title>
+              <span>
+                <DingdingOutlined />
+                <span>Team</span>
+              </span>
+            </template>
+            <a-menu-item key="6">Team 1</a-menu-item>
+            <a-menu-item key="7">Team 2</a-menu-item>
+          </a-sub-menu>
           <template #title>
             <span>
               <team-outlined />
@@ -65,7 +63,7 @@
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '900px' }">
-          <router-view/>
+          <router-view />
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
@@ -94,7 +92,7 @@ export default defineComponent({
     DingdingOutlined,
   },
 
-  data() {
+  data () {
     return {
       collapsed: ref(false),
       selectedKeys: ref(['1']),
@@ -112,7 +110,7 @@ export default defineComponent({
 .site-layout .site-layout-background {
   background: #fff;
 }
-[data-theme='dark'] .site-layout .site-layout-background {
+[data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
 }
 </style>
