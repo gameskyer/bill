@@ -9,11 +9,18 @@
             <span>账单分类</span>
           </router-link>
         </a-menu-item>
+<<<<<<< HEAD
+        <a-menu-item key="2">
+          <router-link to="/bill">
+            <desktop-outlined />
+            <span>每月账单</span>
+=======
 
         <a-menu-item key="2">
           <router-link to="/billTable">
             <table-outlined />
             <span>账单表格</span>
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
           </router-link>
         </a-menu-item>
 
@@ -27,9 +34,13 @@
           <a-menu-item key="3">
             <router-link to="/">Home</router-link>
           </a-menu-item>
+<<<<<<< HEAD
+          <a-menu-item key="5">Bill</a-menu-item>
+=======
           <a-menu-item key="5">
             <router-link to="/billLine">Line</router-link>
           </a-menu-item>
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <!-- 二级菜单 -->
@@ -69,11 +80,15 @@
           <a-breadcrumb-item>User</a-breadcrumb-item>
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
+<<<<<<< HEAD
+        <div :style="{ padding: '24px', background: '#fff', minHeight: '900px' }">
+=======
         <div :style="{
 						padding: '24px',
 						background: '#fff',
 						minHeight: '900px',
 					}">
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
           <router-view />
         </div>
       </a-layout-content>

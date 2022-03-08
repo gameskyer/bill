@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "lockfileVersion": 1,
   "requires": true,
+<<<<<<< HEAD
+=======
   "packages": {
     "": {
       "name": "bill",
@@ -15778,6 +15780,7 @@
       "integrity": "sha1-gDuM2rPhK6WBpMpByIObuw2ssJ4="
     }
   },
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
   "dependencies": {
     "@ant-design/colors": {
       "version": "6.0.0",
@@ -17541,11 +17544,18 @@
       }
     },
     "@vue/cli-plugin-vuex": {
+<<<<<<< HEAD
+      "version": "4.5.13",
+      "resolved": "https://registry.nlark.com/@vue/cli-plugin-vuex/download/@vue/cli-plugin-vuex-4.5.13.tgz?cache=0&sync_timestamp=1631753440893&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fcli-plugin-vuex%2Fdownload%2F%40vue%2Fcli-plugin-vuex-4.5.13.tgz",
+      "integrity": "sha1-mGRti8HmnPbGpsui/tPqzgNWw2A=",
+      "dev": true
+=======
       "version": "4.5.15",
       "resolved": "https://registry.npmjs.org/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.5.15.tgz",
       "integrity": "sha512-fqap+4HN+w+InDxlA3hZTOGE0tzBTgXhKLoDydhywqgmhQ1D9JA6Feh94ze6tG8DsWX58/ujYUqA8jAz17FJtg==",
       "dev": true,
       "requires": {}
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
     },
     "@vue/cli-service": {
       "version": "4.5.15",
@@ -17624,7 +17634,11 @@
         "chalk": {
           "version": "4.1.2",
           "resolved": "https://registry.npmmirror.com/chalk/download/chalk-4.1.2.tgz",
+<<<<<<< HEAD
+          "integrity": "sha1-qsTit3NKdAhnrrFr8CqtVWoeegE=",
+=======
           "integrity": "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==",
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
           "dev": true,
           "optional": true,
           "requires": {
@@ -27421,12 +27435,15 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
     "vue-request": {
       "version": "1.2.4",
       "resolved": "https://registry.npmjs.org/vue-request/-/vue-request-1.2.4.tgz",
       "integrity": "sha512-i+i+6Fog6F8EtYUeueumzKS9Sg06CvjsMXH8TK0YSBxY4sDxIJ+snTEke5rLqiV9d19DTuJOxPQFjTBUpsMtXA==",
       "requires": {}
     },
+>>>>>>> cdb735954195b83c762a44d8522bcff5cd9318c8
     "vue-router": {
       "version": "4.0.11",
       "resolved": "https://registry.nlark.com/vue-router/download/vue-router-4.0.11.tgz?cache=0&sync_timestamp=1628495505697&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvue-router%2Fdownload%2Fvue-router-4.0.11.tgz",
