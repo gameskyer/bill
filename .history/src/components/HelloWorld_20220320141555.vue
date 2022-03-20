@@ -1,10 +1,6 @@
 <template>
 	<div class="hello">
-		<h1>
-			查询共{{ count }}条消费记录，共计消费{{ priceSum }}元，平局每笔消费{{
-				priceAvg
-			}}元
-		</h1>
+		<h1>{{ msg }}</h1>
 	</div>
 </template>
 
@@ -12,9 +8,7 @@
 export default {
 	name: 'HelloWorld',
 	props: {
-		count: Number,
-    priceSum: Number,
-    priceAvg: Number,
+		msg: Int,
 	},
 };
 </script>

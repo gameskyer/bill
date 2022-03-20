@@ -11,7 +11,7 @@ module.exports = {
 		proxy: {
 			'/api': {
 				//代理别名
-				target: 'http://localhost:8004', //代理目标值
+				target: 'http://localhost:8001', //代理目标值
 				changeOrigin: true,
 				secure: true,
 				pathRewrite: {

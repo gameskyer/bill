@@ -1,7 +1,7 @@
 <template>
 	<div class="hello">
 		<h1>
-			查询共{{ count }}条消费记录，共计消费{{ priceSum }}元，平局每笔消费{{
+			查询消费{{ count }}条记录，共计消费{{ priceSum }}元，平局每笔消费{{
 				priceAvg
 			}}元
 		</h1>
