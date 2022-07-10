@@ -12,3 +12,10 @@ export function SelectBill(params) {
 export async function GetBillTypeList() {
 	return await axios.get('/getBillTypeList');
 }
+export function GetBillStackedLine() {
+	return axios({
+		method: 'post',
+		url: '/getBillStackedLine',
+		headers: { 'Content-Type': 'application/json' },
+	});
+}
